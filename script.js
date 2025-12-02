@@ -14,7 +14,7 @@ fetch("data/climate.csv")
 const ctx = document.getElementById( 'myChart');
 
     new Chart(ctx, { 
-        type: 'table',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [{
