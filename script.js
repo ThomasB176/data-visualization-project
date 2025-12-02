@@ -1,23 +1,25 @@
-// Load climate data and display for United States
+// Loads the data
 fetch("data/climate.csv")
     .then(response => response.text())
     .then(csv => {
         const lines = csv.split("\n");
         const headers = lines[0].split(",");
         
-        // Find USA row
-        let usaData = null;
+        // basically just finds the data for USA, 
+        // later ill make it so you can search for a specific country
+        //  and that country's data will be displayed
+        let CountryData = null;
         for (let i = 1; i < lines.length; i++) {
             const row = lines[i];
             if (row.includes("United States")) {
-                usaData = row.split(",");
+                CountryData = row.split(",");
                 break;
             }
         }
         
         // Extract years and values
         const years = headers.slice(1);
-        const values = usaData.slice(1).map(v => parseFloat(v) || null);
+        const values = CountryData.slice(1).map(v => parseFloat(v) || null);
         
         const ctx = document.getElementById('myChart');
         new Chart(ctx, {
