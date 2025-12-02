@@ -1,4 +1,4 @@
-fetch("data/MUSEUM.csv")
+fetch("data/climate.csv")
     .then(response => response.text())
     .then(csv => {
         const rows = csv.split("\n").slice(1);
@@ -14,7 +14,7 @@ fetch("data/MUSEUM.csv")
 const ctx = document.getElementById( 'myChart');
 
     new Chart(ctx, { 
-        type: 'bar',
+        type: 'table',
         data: {
             labels: labels,
             datasets: [{
