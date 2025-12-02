@@ -1,33 +1,42 @@
+// Load climate data and display for United States
 fetch("data/climate.csv")
     .then(response => response.text())
     .then(csv => {
-        const rows = csv.split("\n").slice(1);
-        const labels = [];
-        const values = [];
-
-        rows.forEach(row => {
-            const cols = row.split(",");
-            labels.push(cols[0]);
-            values.push(parseInt(cols[1]));
-        });
+        const lines = csv.split("\n");
+        const headers = lines[0].split(",");
         
-const ctx = document.getElementById( 'myChart');
-
-    new Chart(ctx, { 
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Example Data',
-                data: values,
-                borderWidth: 1,
-                backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0cO', '#000000'],
-            }]
-        },
-        options: {
-            scales: {   
-                y: {beginAtZero: true }
+        // Find USA row
+        let usaData = null;
+        for (let i = 1; i < lines.length; i++) {
+            const row = lines[i];
+            if (row.includes("United States")) {
+                usaData = row.split(",");
+                break;
             }
         }
+        
+        // Extract years and values
+        const years = headers.slice(1);
+        const values = usaData.slice(1).map(v => parseFloat(v) || null);
+        
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Temperature Anomaly (°C)',
+                    data: values,
+                    backgroundColor: '#ff6384'
+                }]
+            },
+            options: {
+                animation: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     });
-});
