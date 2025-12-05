@@ -77,7 +77,7 @@ function updateChart(selectedCountry) {
         data: {
             labels: years,
             datasets: [{
-                label: 'Temperature Anomaly (°C) (baseline temperature is based off temperatures from 1951-1980)',
+                label: 'Temperature Anomaly (°C) (1961 - 2024) (baseline temperature is based off temperatures from 1951-1980)',
                 data: values,
                 backgroundColor: '#ff6384'
             }]
