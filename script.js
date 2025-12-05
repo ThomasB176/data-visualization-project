@@ -8,7 +8,7 @@ fetch("data/climate.csv")
         const lines = csv.split("\n");
         const headers = lines[0].split(",");
         
-        // Extracts the names of each country in the csv file, 
+        // Extracts the names of each country in the csv file
         const countries = [];
         for (let i = 1; i < lines.length; i++) {
             const row = lines[i].trim();
