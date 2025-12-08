@@ -49,7 +49,7 @@ function updateChart(selectedCountry) {
     const lines = csvData.split("\n");
     const headers = lines[0].split(",");
     
-    // grabs the corresponding country data from the csv
+    // grabs the corresponding country data from climate.csv
     let countryData = null;
     for (let i = 1; i < lines.length; i++) {
         const row = lines[i].trim();
